@@ -175,15 +175,16 @@ class BaseAviary(gym.Env):
             self.INV_A = np.linalg.inv(self.A)
             self.B_COEFF = np.array([1/self.KF, 1/(self.KF*self.L), 1/(self.KF*self.L), 1/self.KM])
         #### Connect to PyBullet ###################################
+        customTargetPosition = [2, 2, 0] # for customize debug camera location
         if self.GUI:
             #### With debug GUI ########################################
             self.CLIENT = p.connect(p.GUI) # p.connect(p.GUI, options="--opengl2")
             for i in [p.COV_ENABLE_RGB_BUFFER_PREVIEW, p.COV_ENABLE_DEPTH_BUFFER_PREVIEW, p.COV_ENABLE_SEGMENTATION_MARK_PREVIEW]:
                 p.configureDebugVisualizer(i, 0, physicsClientId=self.CLIENT)
-            p.resetDebugVisualizerCamera(cameraDistance=3,
-                                         cameraYaw=-30,
+            p.resetDebugVisualizerCamera(cameraDistance=5,
+                                         cameraYaw=-0, # original 30
                                          cameraPitch=-89, # original 30
-                                         cameraTargetPosition=[0, 0, 0],
+                                         cameraTargetPosition=customTargetPosition,
                                          physicsClientId=self.CLIENT
                                          )
             ret = p.getDebugVisualizerCamera(physicsClientId=self.CLIENT)
@@ -211,7 +212,7 @@ class BaseAviary(gym.Env):
                                                                     yaw=-30,
                                                                     pitch=-30,
                                                                     roll=0,
-                                                                    cameraTargetPosition=[0, 0, 0],
+                                                                    cameraTargetPosition=customTargetPosition,
                                                                     upAxisIndex=2,
                                                                     physicsClientId=self.CLIENT
                                                                     )
