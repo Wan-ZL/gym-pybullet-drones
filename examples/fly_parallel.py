@@ -161,7 +161,7 @@ if __name__ == "__main__":
         #### Compute control at the desired frequency ##############
         if i%CTRL_EVERY_N_STEPS == 0:
 
-            # parallel control solution
+            #### parallel control solution #############
             threads = []
             action_paral = Manager().dict()
             for j in range(ARGS.num_drones):
