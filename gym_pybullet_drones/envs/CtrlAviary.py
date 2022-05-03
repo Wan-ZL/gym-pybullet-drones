@@ -20,7 +20,8 @@ class CtrlAviary(BaseAviary):
                  gui=False,
                  record=False,
                  obstacles=False,
-                 user_debug_gui=True
+                 user_debug_gui=True,
+                 print_result = True
                  ):
         """Initialization of an aviary environment for control applications.
 
@@ -63,7 +64,8 @@ class CtrlAviary(BaseAviary):
                          gui=gui,
                          record=record,
                          obstacles=obstacles,
-                         user_debug_gui=user_debug_gui
+                         user_debug_gui=user_debug_gui,
+                         print_result = print_result
                          )
 
     ################################################################################
